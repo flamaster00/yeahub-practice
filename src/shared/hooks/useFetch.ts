@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 
-export const useFetch = <T>(callback: () => Promise<T>): {data: T | null, isLoading: boolean, error: string | null} => {
+export const useFetch = <T>(
+  callback: () => Promise<T>,
+  deps: unknown[] = []
+): {data: T | null, isLoading: boolean, error: string | null} => {
   const [data, setData] = useState<T | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -18,7 +21,7 @@ export const useFetch = <T>(callback: () => Promise<T>): {data: T | null, isLoad
     };
 
     fetchData();
-  }, []);
+  }, [...deps]);
 
   return { data, isLoading, error };
 };

@@ -1,0 +1,35 @@
+.Pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  width: fit-content;
+  height: fit-content;
+}
+
+.page {
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 14px;
+  line-height: 120%;
+  letter-spacing: 0%;
+
+  cursor: pointer;
+
+  color: var(--color-black-700);
+}
+
+.currentPage {
+  font-weight: 600;
+  font-style: SemiBold;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0%;
+
+  color: white;
+  background-color: var(--color-purple-700);
+
+  padding: 2px 6px;
+  border-radius: 2px;
+}
