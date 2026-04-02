@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=PT+Sans:wght@400;700&display=swap");
+
+@import "@shared/styles/reset.css";
+@import "@shared/styles/variables.css";
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-black-25);
+  z-index: 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+}
+
+.footer {
+  margin-top: auto;
+}

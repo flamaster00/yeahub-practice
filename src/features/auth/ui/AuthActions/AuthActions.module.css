@@ -1,0 +1,6 @@
+.AuthActions {
+    display: flex;
+    gap: 26px;
+    width: fit-content;
+    height: fit-content;
+}

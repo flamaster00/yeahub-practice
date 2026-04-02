@@ -1,0 +1,75 @@
+.not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .not-found__code {
+    font-size: 120px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -4px;
+    color: #e0e0e0;
+  }
+  
+  .not-found__divider {
+    width: 48px;
+    height: 2px;
+    background-color: #e0e0e0;
+    margin: 24px 0;
+  }
+  
+  .not-found__content {
+    margin-bottom: 32px;
+  }
+  
+  .not-found__title {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 12px;
+    color: #1a1a1a;
+  }
+  
+  .not-found__description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #6b7280;
+    margin: 0;
+  }
+  
+  .not-found__actions {
+    display: flex;
+    gap: 12px;
+  }
+  
+  /* Базовые стили, общие для обеих кнопок */
+  .not-found__btn {
+    padding: 10px 24px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    border: none;
+  }
+  
+  .not-found__btn:hover {
+    opacity: 0.8;
+  }
+  
+  /* Основная кнопка — тёмный фон */
+  .not-found__btn--primary {
+    background-color: #1a1a1a;
+    color: #ffffff;
+  }
+  
+  /* Второстепенная кнопка — только обводка */
+  .not-found__btn--ghost {
+    background-color: transparent;
+    color: #1a1a1a;
+    border: 1.5px solid #d1d5db;
+  }

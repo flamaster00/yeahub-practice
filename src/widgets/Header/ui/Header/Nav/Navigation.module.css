@@ -1,0 +1,37 @@
+.nav-list {
+  display: none;
+}
+
+.nav-list-item {
+  font-weight: 500;
+  color: var(--color-black-900);
+}
+
+.nav-select {
+  width: fit-content;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 140%;
+  color: var(--color-black-900);
+}
+
+
+@media (width > 1440px) {
+  .nav-list {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-list-item {
+    width: max-content;
+    font-weight: 500;
+    line-height: 140%;
+    color: var(--color-black-900);
+  }
+
+  .nav-select {
+    display: none;
+  }
+}

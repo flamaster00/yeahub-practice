@@ -1,0 +1,19 @@
+.SocialLinks {
+  display: flex;
+  gap: 8px;
+  width: fit-content;
+  height: fit-content;
+}
+
+.footer-icon {
+  width: 20px;
+  height: 20px;
+}
+
+@media (width >= 1440px) {
+  .footer-icon {
+    width: 28px;
+    height: 28px;
+    max-width: unset;
+  }
+}
