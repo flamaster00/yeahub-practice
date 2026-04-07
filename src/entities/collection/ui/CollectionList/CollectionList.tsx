@@ -42,8 +42,11 @@ export const CollectionList: React.FC<CollectionList> = ({ className }) => {
   }
 
   return (
-    <div>
-      <ul className={clsx(styles.CollectionList, className)}>
+    <div className={styles.CollectionList}>
+      <div className={styles.titleContainer}>
+        <h3 className={styles.title}>Коллекции</h3>
+      </div>
+      <ul className={clsx(styles.list, className)}>
         {collections &&
           collections.map((collection) => (
             <li key={collection.id}>
