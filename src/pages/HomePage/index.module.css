@@ -1,36 +1,22 @@
 .HomePage {
-  margin: 20px 10px 45px;
-  padding: 20px 10px;
-  background-color: white;
-  border-radius: 12px;
+  padding-top: 20px;
+  padding-bottom: 45px;
 }
 
-.container {
+.CollectionList {
+  margin: 0 auto;
 }
 
-.collections-header {
-    height: 48px;
-    width: 100%;
-    border-bottom: 0.5px solid var(--color-black-50);
-
-    display: flex;
-    justify-content: space-between;
+@media (width >= 768px) {
+  .HomePage {
+    padding-top: 24px;
+    padding-bottom: 88px;
+  }
 }
 
-.title {
-  font-weight: 500;
-  font-style: Medium;
-  font-size: 20px;
-  line-height: 120%;
-  letter-spacing: 0%;
+@media (width >= 1440px) {
+  .HomePage {
+    padding-top: 40px;
+    padding-bottom: 140px;
+  }
 }
-
-.filter {
-}
-
-.filter-icon {
-    width: 36px;
-    height: 36px;
-    cursor: pointer;
-}
-
