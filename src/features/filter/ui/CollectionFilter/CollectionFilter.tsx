@@ -9,14 +9,16 @@ interface CollectionFilterProps {
 export const CollectionFilter = ({ className }: CollectionFilterProps) => {
   return (
     <div className={clsx(styles.CollectionFilter, className)}>
+      <div className={styles.wrapper}>
         <input type="text" />
         <div>
-            <Button >test</Button>
-            <Button >test1</Button>
+          <Button>test</Button>
+          <Button>test1</Button>
         </div>
         <div>
-            <Button>tag</Button>
+          <Button>tag</Button>
         </div>
+      </div>
     </div>
   );
 };
