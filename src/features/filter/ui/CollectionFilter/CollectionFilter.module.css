@@ -1,0 +1,12 @@
+.CollectionFilter {
+    width: 392px;
+    height: fit-content;
+
+    border-radius: 24px;
+    padding: 24px;
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
