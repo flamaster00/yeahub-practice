@@ -3,6 +3,10 @@
   padding-bottom: 45px;
 }
 
+.CollectionList {
+  margin: 0 auto;
+}
+
 @media (width >= 768px) {
   .HomePage {
     padding-top: 24px;
@@ -10,7 +14,7 @@
   }
 }
 
-@media (Width >= 1440px) {
+@media (width >= 1440px) {
   .HomePage {
     padding-top: 40px;
     padding-bottom: 140px;
