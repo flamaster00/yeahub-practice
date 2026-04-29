@@ -44,7 +44,10 @@
 
 .CollectionFilter {
   position: absolute;
-  display: none;
+  top: 0;
+  right: 0;
+  width: 360px;
+  background-color: #fff;
 }
 
 @media (width >= 768px) {
@@ -61,6 +64,10 @@
 
   .title {
     font-size: 24px;
+  }
+
+  .CollectionFilter {
+    width: 328px;
   }
 }
 
@@ -85,5 +92,6 @@
   .CollectionFilter {
     display: block;
     position: static;
+    background-color: transparent;
   }
 }

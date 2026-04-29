@@ -2,15 +2,41 @@ import clsx from "clsx";
 import styles from "./CollectionFilter.module.css";
 import { Button } from "@shared/ui/button/Button";
 import SearchIcon from "@shared/assets/icons/search.svg?react";
-import StarIcon from '@shared/assets/icons/star.svg?react';
+import StarIcon from "@shared/assets/icons/star.svg?react";
+import type { ChangeEvent, MouseEvent } from "react";
 
 interface CollectionFilterProps {
   className?: string;
+  isOpen: boolean;
+  close: () => void;
+  filterInputValue: string;
+  handleFilterInputChange: (value: string) => void;
+  selectedSpecializations: string[];
+  handleSelectedSpecializations: (specialization: string) => void;
 }
 
-export const CollectionFilter = ({ className }: CollectionFilterProps) => {
+export const CollectionFilter = (props: CollectionFilterProps) => {
+  const {
+    className,
+    isOpen,
+    close,
+    filterInputValue,
+    handleFilterInputChange,
+    handleSelectedSpecializations,
+    selectedSpecializations,
+  } = props;
+
   return (
-    <div className={clsx(styles.CollectionFilter, className)}>
+    <div
+      className={clsx(
+        styles.CollectionFilter,
+        !isOpen ? styles.hiddenForMobile : "",
+        className,
+      )}
+    >
+      <button className={styles.closeFilterButton} onClick={close}>
+        x
+      </button>
       <div className={styles.wrapper}>
         <div className={styles.searchWrapper}>
           <SearchIcon className={styles.searchIcon} />
@@ -18,18 +44,40 @@ export const CollectionFilter = ({ className }: CollectionFilterProps) => {
             className={styles.searchInput}
             type="text"
             placeholder="Введите запрос..."
+            value={filterInputValue}
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              handleFilterInputChange(event.target.value)
+            }
           />
         </div>
         <div className={styles.specializationWrapper}>
           <p className={styles.specializationTitle}>Специализация</p>
           <div className={styles.specializationGroupButton}>
-            <Button variant="outline" size="S">
+            <Button
+              variant="outline"
+              size="S"
+              onClick={(event: MouseEvent<HTMLButtonElement>) =>
+                handleSelectedSpecializations(event.currentTarget.innerText)
+              }
+            >
               Fullstack
             </Button>
-            <Button variant="outline" size="S">
+            <Button
+              variant="outline"
+              size="S"
+              onClick={(event: MouseEvent<HTMLButtonElement>) =>
+                handleSelectedSpecializations(event.currentTarget.innerText)
+              }
+            >
               Software tester
             </Button>
-            <Button variant="outline" size="S">
+            <Button
+              variant="outline"
+              size="S"
+              onClick={(event: MouseEvent<HTMLButtonElement>) =>
+                handleSelectedSpecializations(event.currentTarget.innerText)
+              }
+            >
               React Frontend Developer
             </Button>
           </div>
@@ -38,8 +86,17 @@ export const CollectionFilter = ({ className }: CollectionFilterProps) => {
         <div className={styles.access}>
           <p className={styles.accessTitle}>Доступ</p>
           <div className={styles.accessGroupButton}>
-          <Button IconLeft={StarIcon} iconSize="30" variant="outline" size="S">Для участников</Button>
-          <Button variant="outline" size="S">Для всех</Button>
+            <Button
+              IconLeft={StarIcon}
+              iconSize="30"
+              variant="outline"
+              size="S"
+            >
+              Для участников
+            </Button>
+            <Button variant="outline" size="S">
+              Для всех
+            </Button>
           </div>
         </div>
       </div>
