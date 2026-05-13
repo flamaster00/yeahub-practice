@@ -46,4 +46,17 @@ export interface CreatedBy2 {
   username: string;
 }
 
+export interface GetAllCollectionsParams {
+  page?: number;
+  limit?: number;
+  titleOrDescriptionSearch?: string;
+  specializations?: number[];
+  isFree?: boolean;
+}
+
+export interface GetCollectionParams {
+  id: number
+}
+
+
 

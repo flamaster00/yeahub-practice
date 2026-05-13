@@ -1,6 +1,6 @@
 export { CollectionCard } from "./ui/CollectionCard/CollectionCard";
 export { CollectionList } from "./ui/CollectionList/CollectionList";
-export { CollectionFilter } from "./ui/CollectionFilter/CollectionFilter";
+export { CollectionItem } from "./ui/CollectionItem/CollectionItem";
 export { collectionApi } from "./api/collectionApi";
 export type {
   Collection,
@@ -8,4 +8,6 @@ export type {
   CreatedBy,
   CreatedBy2,
   getAllCollectionsResponse,
+  GetAllCollectionsParams,
+  GetCollectionParams,
 } from "./model/model";

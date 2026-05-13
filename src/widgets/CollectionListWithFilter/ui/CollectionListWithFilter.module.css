@@ -1,0 +1,97 @@
+.CollectionListWithFilter {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  padding-top: 20px;
+  padding-bottom: 45px;
+}
+
+.collectionWrapper {
+  background-color: white;
+  max-width: 340px;
+  padding: 20px 10px;
+  border-radius: 12px;
+  flex: 1;
+}
+
+.collectionHeader {
+  height: 48px;
+  width: 100%;
+  padding-right: 10px;
+  padding-bottom: 12px;
+  border-bottom: 0.5px solid var(--color-black-50);
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: 0%;
+}
+
+.filter {
+}
+
+.filterIcon {
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+}
+
+.CollectionFilter {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 360px;
+  background-color: #fff;
+}
+
+@media (width >= 768px) {
+  .collectionWrapper {
+    max-width: 708px;
+    padding: 20px 16px 40px;
+    border-radius: 24px;
+  }
+
+  .collectionHeader {
+    height: 56px;
+    padding-bottom: 20px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .CollectionFilter {
+    width: 328px;
+  }
+}
+
+@media (width >= 1440px) {
+  .CollectionListWithFilter {
+    gap: 20px;
+  }
+  .collectionWrapper {
+    max-width: 804px;
+    padding: 20px 20px 40px;
+  }
+
+  .collectionHeader {
+    height: 45px;
+    padding-bottom: 16px;
+  }
+
+  .filterIcon {
+    display: none;
+  }
+
+  .CollectionFilter {
+    display: block;
+    position: static;
+    background-color: transparent;
+  }
+}

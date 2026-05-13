@@ -1,10 +1,11 @@
 .CollectionCard {
-  width: 100%;
+  max-width: 100%;
   height: fit-content;
   padding: 10px 10px 20px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
 
   background-color: white;
 
@@ -18,6 +19,12 @@
   border-radius: 18px;
   overflow: hidden;
   object-fit: cover;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .tags,
@@ -80,4 +87,29 @@
   white-space: nowrap;
 
   color: var(--color-black-500);
+}
+
+@media (width >= 768px) {
+  .CollectionCard {
+    padding: 16px;
+    flex-direction: row;
+  }
+
+  .img-wrapper {
+    height: 157px;
+    width: 157px;
+    border-radius: 12px;
+  }
+
+  .description {
+    flex: 1;
+    overflow: hidden;
+    gap: 18px;
+  }
+}
+
+@media (width >= 1440px) {
+  .CollectionCard {
+    padding: 20px;
+  }
 }

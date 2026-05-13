@@ -1,1 +1,6 @@
-export type { Specialization } from "./model/model";
+export type {
+  Specialization,
+  GetAllSpecializationsResponse,
+} from "./model/model";
+
+export { specializationApi } from "./api/specializationApi";
