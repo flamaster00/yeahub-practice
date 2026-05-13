@@ -3,7 +3,9 @@ import styles from "./CollectionFilter.module.css";
 import { Button } from "@shared/ui/button/Button";
 import SearchIcon from "@shared/assets/icons/search.svg?react";
 import StarIcon from "@shared/assets/icons/star.svg?react";
-import type { ChangeEvent, MouseEvent } from "react";
+import { useState, type ChangeEvent } from "react";
+import { specializationApi } from "@entities/specialization";
+import { useFetch } from "@shared/hooks/useFetch";
 
 interface CollectionFilterProps {
   className?: string;
@@ -11,8 +13,10 @@ interface CollectionFilterProps {
   close: () => void;
   filterInputValue: string;
   handleFilterInputChange: (value: string) => void;
-  selectedSpecializations: string[];
-  handleSelectedSpecializations: (specialization: string) => void;
+  selectedSpecializations: number[];
+  handleSelectedSpecializations: (specialization: number) => void;
+  isFreeSelected: boolean;
+  setIsFreeSelected: (v: boolean) => void
 }
 
 export const CollectionFilter = (props: CollectionFilterProps) => {
@@ -24,7 +28,33 @@ export const CollectionFilter = (props: CollectionFilterProps) => {
     handleFilterInputChange,
     handleSelectedSpecializations,
     selectedSpecializations,
+    isFreeSelected,
+    setIsFreeSelected,
   } = props;
+
+  const { getAllSpecializations } = specializationApi;
+  const { data: specsData } = useFetch(() => getAllSpecializations());
+
+  const [showAllSpecs, setShowAllSpecs] = useState(false);
+  const toggleShowAllSpecs = () => setShowAllSpecs((prev) => !prev);
+
+  const specsList = specsData?.data.map((spec) => (
+    <li key={spec.id}>
+      <Button
+        className={clsx(
+          styles.skillListBtn,
+          selectedSpecializations.find((v) => v === spec.id)
+            ? styles.selected
+            : "",
+        )}
+        variant="outline"
+        size="S"
+        onClick={() => handleSelectedSpecializations(spec.id)}
+      >
+        {spec.title}
+      </Button>
+    </li>
+  ));
 
   return (
     <div
@@ -52,52 +82,45 @@ export const CollectionFilter = (props: CollectionFilterProps) => {
         </div>
         <div className={styles.specializationWrapper}>
           <p className={styles.specializationTitle}>Специализация</p>
-          <div className={styles.specializationGroupButton}>
-            <Button
-              variant="outline"
-              size="S"
-              onClick={(event: MouseEvent<HTMLButtonElement>) =>
-                handleSelectedSpecializations(event.currentTarget.innerText)
-              }
-            >
-              Fullstack
-            </Button>
-            <Button
-              variant="outline"
-              size="S"
-              onClick={(event: MouseEvent<HTMLButtonElement>) =>
-                handleSelectedSpecializations(event.currentTarget.innerText)
-              }
-            >
-              Software tester
-            </Button>
-            <Button
-              variant="outline"
-              size="S"
-              onClick={(event: MouseEvent<HTMLButtonElement>) =>
-                handleSelectedSpecializations(event.currentTarget.innerText)
-              }
-            >
-              React Frontend Developer
-            </Button>
-          </div>
-          <Button variant="link">Посмотреть все</Button>
+          <ul className={styles.skillGroupButton}>
+            {specsList && showAllSpecs ? specsList : specsList?.slice(0, 3)}
+          </ul>
+          <Button variant="link" onClick={toggleShowAllSpecs}>
+            {showAllSpecs ? "Скрыть" : "Показать все"}
+          </Button>
         </div>
         <div className={styles.access}>
           <p className={styles.accessTitle}>Доступ</p>
-          <div className={styles.accessGroupButton}>
-            <Button
-              IconLeft={StarIcon}
-              iconSize="30"
-              variant="outline"
-              size="S"
-            >
-              Для участников
-            </Button>
-            <Button variant="outline" size="S">
-              Для всех
-            </Button>
-          </div>
+          <ul className={styles.accessGroupButton}>
+            <li>
+              <Button
+                IconLeft={StarIcon}
+                iconSize="30"
+                variant="outline"
+                size="S"
+                className={clsx(
+                  styles.skillListBtn,
+                  !isFreeSelected && styles.selected,
+                )}
+                onClick={() => setIsFreeSelected(false)}
+              >
+                Для участников
+              </Button>
+            </li>
+            <li>
+              <Button
+                variant="outline"
+                size="S"
+                className={clsx(
+                  styles.skillListBtn,
+                  isFreeSelected && styles.selected
+                )}
+                onClick={() => setIsFreeSelected(true)}
+              >
+                Для всех
+              </Button>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

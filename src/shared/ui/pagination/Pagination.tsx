@@ -16,6 +16,8 @@ export const Pagination = (props: PaginationProps) => {
   const { limit, currentPage, total, className, onPageChange } = props;
   const totalPages = Math.ceil(total / limit);
 
+  if (totalPages <= 1) return null
+
   // Создаем кнопки в пагинации
   const totalPagesArray: TotalPagesArray = [];
   // Если страниц меньше 8, то показываем все

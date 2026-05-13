@@ -9,14 +9,21 @@ import { Pagination } from "@shared/ui/pagination/Pagination";
 
 interface CollectionList {
   className?: string;
+  filters?: {
+    page?: number;
+    limit?: number;
+    titleOrDescriptionSearch?: string;
+    specializations?: number[];
+    isFree?: boolean 
+  }
 }
 
-export const CollectionList: React.FC<CollectionList> = ({ className }) => {
+export const CollectionList: React.FC<CollectionList> = ({ className, filters }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const { getAllCollections } = collectionApi;
   const { data, error, isLoading } = useFetch<getAllCollectionsResponse>(
-    () => getAllCollections(currentPage),
-    [currentPage],
+    () => getAllCollections(currentPage, 10, filters?.titleOrDescriptionSearch, filters?.specializations, filters?.isFree),
+    [currentPage, filters],
   );
   const collections = data?.data;
 

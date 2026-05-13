@@ -3,11 +3,19 @@ import styles from "./CollectionListWithFilter.module.css";
 import { CollectionList } from "@entities/collection";
 import { CollectionFilter } from "@features/filter";
 import FilterIcon from "@shared/assets/icons/filter.svg?react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useDebounce } from "@shared/hooks/useDebounce";
 
 interface CollectionListWithFilterProps {
   className?: string;
+}
+
+interface Filters {
+  page?: number;
+  limit?: number;
+  titleOrDescriptionSearch?: string;
+  specializations?: number[];
+  isFree?: boolean;
 }
 
 export const CollectionListWithFilter = ({
@@ -24,14 +32,28 @@ export const CollectionListWithFilter = ({
   };
   const debouncedInputValue = useDebounce(filterInputValue, 500);
 
-  const [selectedSpecializations, setSelectedSpecializations] = useState<string[]>([])
-  const handleSelectedSpecializations = (specialization: string) => {
-    if (selectedSpecializations.includes(specialization)) {
-      setSelectedSpecializations(specs => specs.filter(spec => spec !== specialization))
+  const [selectedSpecializations, setSelectedSpecializations] = useState<
+    number[]
+  >([]);
+  const handleSelectedSpecializations = (specializationId: number) => {
+    if (selectedSpecializations.includes(specializationId)) {
+      setSelectedSpecializations((specs) =>
+        specs.filter((spec) => spec !== specializationId),
+      );
     } else {
-      setSelectedSpecializations(specs => [specialization, ...specs])
+      setSelectedSpecializations((specs) => [specializationId, ...specs]);
     }
-  }
+  };
+
+  const [isFree, setIsFree] = useState(true);
+  const filters: Filters = useMemo(
+    () => ({
+      isFree,
+      specializations: selectedSpecializations,
+      titleOrDescriptionSearch: debouncedInputValue,
+    }),
+    [isFree, selectedSpecializations, debouncedInputValue],
+  );
 
   return (
     <div className={clsx(styles.CollectionListWithFilter, className)}>
@@ -45,7 +67,7 @@ export const CollectionListWithFilter = ({
             />
           </div>
         </div>
-        <CollectionList />
+        <CollectionList filters={filters} />
       </div>
       <CollectionFilter
         className={styles.CollectionFilter}
@@ -55,6 +77,8 @@ export const CollectionListWithFilter = ({
         handleFilterInputChange={handleFilterInputChange}
         selectedSpecializations={selectedSpecializations}
         handleSelectedSpecializations={handleSelectedSpecializations}
+        isFreeSelected={isFree}
+        setIsFreeSelected={setIsFree}
       />
     </div>
   );
