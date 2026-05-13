@@ -4,13 +4,15 @@ import { collectionApi } from "../api/collectionApi";
 import type {
   GetAllCollectionsParams,
   getAllCollectionsResponse,
+  GetCollectionParams,
 } from "./model";
 
 interface UseCollection {
-  filters: GetAllCollectionsParams;
+  filters?: GetAllCollectionsParams;
+  id?: NonNullable<GetCollectionParams>;
 }
 
-export const useCollection = ({ filters }: UseCollection) => {
+export const useCollection = ({ filters, id }: UseCollection) => {
   const [currentPage, setCurrentPage] = useState(1);
   const { getAllCollections } = collectionApi;
   const { data, error, isLoading } = useFetch<getAllCollectionsResponse>(
