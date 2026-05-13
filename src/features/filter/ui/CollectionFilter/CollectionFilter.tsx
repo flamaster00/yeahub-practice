@@ -3,9 +3,9 @@ import styles from "./CollectionFilter.module.css";
 import { Button } from "@shared/ui/button/Button";
 import SearchIcon from "@shared/assets/icons/search.svg?react";
 import StarIcon from "@shared/assets/icons/star.svg?react";
-import { useState, type ChangeEvent } from "react";
-import { specializationApi } from "@entities/specialization";
-import { useFetch } from "@shared/hooks/useFetch";
+import { type ChangeEvent } from "react";
+import { useFilter } from "../../model/useFilter";
+import { SpecializationsList } from "./SpecializationsList/SpecializationsList";
 
 interface CollectionFilterProps {
   className?: string;
@@ -16,7 +16,7 @@ interface CollectionFilterProps {
   selectedSpecializations: number[];
   handleSelectedSpecializations: (specialization: number) => void;
   isFreeSelected: boolean;
-  setIsFreeSelected: (v: boolean) => void
+  setIsFreeSelected: (v: boolean) => void;
 }
 
 export const CollectionFilter = (props: CollectionFilterProps) => {
@@ -26,35 +26,13 @@ export const CollectionFilter = (props: CollectionFilterProps) => {
     close,
     filterInputValue,
     handleFilterInputChange,
-    handleSelectedSpecializations,
-    selectedSpecializations,
     isFreeSelected,
     setIsFreeSelected,
+    selectedSpecializations,
+    handleSelectedSpecializations,
   } = props;
 
-  const { getAllSpecializations } = specializationApi;
-  const { data: specsData } = useFetch(() => getAllSpecializations());
-
-  const [showAllSpecs, setShowAllSpecs] = useState(false);
-  const toggleShowAllSpecs = () => setShowAllSpecs((prev) => !prev);
-
-  const specsList = specsData?.data.map((spec) => (
-    <li key={spec.id}>
-      <Button
-        className={clsx(
-          styles.skillListBtn,
-          selectedSpecializations.find((v) => v === spec.id)
-            ? styles.selected
-            : "",
-        )}
-        variant="outline"
-        size="S"
-        onClick={() => handleSelectedSpecializations(spec.id)}
-      >
-        {spec.title}
-      </Button>
-    </li>
-  ));
+  const { showAllSpecs, toggleShowAllSpecs } = useFilter();
 
   return (
     <div
@@ -82,9 +60,11 @@ export const CollectionFilter = (props: CollectionFilterProps) => {
         </div>
         <div className={styles.specializationWrapper}>
           <p className={styles.specializationTitle}>Специализация</p>
-          <ul className={styles.skillGroupButton}>
-            {specsList && showAllSpecs ? specsList : specsList?.slice(0, 3)}
-          </ul>
+          <SpecializationsList
+            showAllSpecs={showAllSpecs}
+            selectedSpecializations={selectedSpecializations}
+            handleSelectedSpecializations={handleSelectedSpecializations}
+          />
           <Button variant="link" onClick={toggleShowAllSpecs}>
             {showAllSpecs ? "Скрыть" : "Показать все"}
           </Button>
@@ -113,7 +93,7 @@ export const CollectionFilter = (props: CollectionFilterProps) => {
                 size="S"
                 className={clsx(
                   styles.skillListBtn,
-                  isFreeSelected && styles.selected
+                  isFreeSelected && styles.selected,
                 )}
                 onClick={() => setIsFreeSelected(true)}
               >

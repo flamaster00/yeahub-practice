@@ -1,52 +1,34 @@
 import clsx from "clsx";
 import styles from "./CollectionListWithFilter.module.css";
-import { CollectionList } from "@entities/collection";
+import {
+  CollectionList,
+  type GetAllCollectionsParams,
+} from "@entities/collection";
 import { CollectionFilter } from "@features/filter";
 import FilterIcon from "@shared/assets/icons/filter.svg?react";
-import { useMemo, useState } from "react";
-import { useDebounce } from "@shared/hooks/useDebounce";
+import { useMemo } from "react";
+import { useCollectionListWithFilter } from "../model/useCollectionListWithFilter";
 
 interface CollectionListWithFilterProps {
   className?: string;
 }
 
-interface Filters {
-  page?: number;
-  limit?: number;
-  titleOrDescriptionSearch?: string;
-  specializations?: number[];
-  isFree?: boolean;
-}
-
 export const CollectionListWithFilter = ({
   className,
 }: CollectionListWithFilterProps) => {
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const toggleFilter = () => {
-    setIsFilterOpen((prev) => !prev);
-  };
+  const {
+    debouncedInputValue,
+    handleFilterInputChange,
+    handleSelectedSpecializations,
+    isFilterOpen,
+    isFree,
+    setIsFree,
+    titleOrDescriptionSearch,
+    toggleFilter,
+    selectedSpecializations,
+  } = useCollectionListWithFilter();
 
-  const [filterInputValue, setFilterInputValue] = useState("");
-  const handleFilterInputChange = (value: string) => {
-    setFilterInputValue(value);
-  };
-  const debouncedInputValue = useDebounce(filterInputValue, 500);
-
-  const [selectedSpecializations, setSelectedSpecializations] = useState<
-    number[]
-  >([]);
-  const handleSelectedSpecializations = (specializationId: number) => {
-    if (selectedSpecializations.includes(specializationId)) {
-      setSelectedSpecializations((specs) =>
-        specs.filter((spec) => spec !== specializationId),
-      );
-    } else {
-      setSelectedSpecializations((specs) => [specializationId, ...specs]);
-    }
-  };
-
-  const [isFree, setIsFree] = useState(true);
-  const filters: Filters = useMemo(
+  const filters: GetAllCollectionsParams = useMemo(
     () => ({
       isFree,
       specializations: selectedSpecializations,
@@ -73,7 +55,7 @@ export const CollectionListWithFilter = ({
         className={styles.CollectionFilter}
         isOpen={isFilterOpen}
         close={toggleFilter}
-        filterInputValue={filterInputValue}
+        filterInputValue={titleOrDescriptionSearch}
         handleFilterInputChange={handleFilterInputChange}
         selectedSpecializations={selectedSpecializations}
         handleSelectedSpecializations={handleSelectedSpecializations}
