@@ -53,3 +53,10 @@ export interface GetAllCollectionsParams {
   specializations?: number[];
   isFree?: boolean;
 }
+
+export interface GetCollectionParams {
+  id: number
+}
+
+
+

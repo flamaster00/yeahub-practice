@@ -4,6 +4,7 @@ import { CollectionCard } from "../CollectionCard/CollectionCard";
 import { Pagination } from "@shared/ui/pagination/Pagination";
 import { useCollection } from "@entities/collection/model/useCollection";
 import type { GetAllCollectionsParams } from "@entities/collection/model/model";
+import { Link } from "react-router-dom";
 
 interface CollectionList {
   className?: string;
@@ -39,9 +40,9 @@ export const CollectionList = ({ className, filters }: CollectionList) => {
       <ul className={clsx(styles.list)}>
         {data &&
           collections.map((collection) => (
-            <li key={collection.id}>
+            <Link key={collection.id} to={`collections/${collection.id}/public`} >
               <CollectionCard collection={collection} />
-            </li>
+            </Link>
           ))}
       </ul>
       <Pagination

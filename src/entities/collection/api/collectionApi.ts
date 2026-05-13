@@ -1,5 +1,6 @@
 import { apiClient } from "@shared/api/apiClient";
 import type {
+  Collection,
   GetAllCollectionsParams,
   getAllCollectionsResponse,
 } from "../model/model";
@@ -11,5 +12,12 @@ export const collectionApi = {
       { params },
     );
     return data;
+  },
+
+  getCollectionById: async ( id : number) => {
+    const { data } = await apiClient.get<Collection>(
+      `/collections/${id}/public`,
+    );
+    return data
   },
 };
