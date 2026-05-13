@@ -7,4 +7,5 @@ export type {
   CreatedBy,
   CreatedBy2,
   getAllCollectionsResponse,
+  GetAllCollectionsParams
 } from "./model/model";

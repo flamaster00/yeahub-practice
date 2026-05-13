@@ -1,35 +1,19 @@
 import clsx from "clsx";
 import styles from "./CollectionList.module.css";
 import { CollectionCard } from "../CollectionCard/CollectionCard";
-import { collectionApi } from "../../api/collectionApi";
-import { useFetch } from "@shared/hooks/useFetch";
-import type { getAllCollectionsResponse } from "../../model/model";
-import { useState } from "react";
 import { Pagination } from "@shared/ui/pagination/Pagination";
+import { useCollection } from "@entities/collection/model/useCollection";
+import type { GetAllCollectionsParams } from "@entities/collection/model/model";
 
 interface CollectionList {
   className?: string;
-  filters?: {
-    page?: number;
-    limit?: number;
-    titleOrDescriptionSearch?: string;
-    specializations?: number[];
-    isFree?: boolean 
-  }
+  filters: GetAllCollectionsParams;
 }
 
-export const CollectionList: React.FC<CollectionList> = ({ className, filters }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const { getAllCollections } = collectionApi;
-  const { data, error, isLoading } = useFetch<getAllCollectionsResponse>(
-    () => getAllCollections(currentPage, 10, filters?.titleOrDescriptionSearch, filters?.specializations, filters?.isFree),
-    [currentPage, filters],
-  );
-  const collections = data?.data;
-
-  const onPageChange = (page: number) => {
-    setCurrentPage(page);
-  };
+export const CollectionList = ({ className, filters }: CollectionList) => {
+  const { data, currentPage, error, isLoading, onPageChange } = useCollection({
+    filters,
+  });
 
   if (isLoading) {
     return <>loading...</>;
@@ -48,10 +32,12 @@ export const CollectionList: React.FC<CollectionList> = ({ className, filters })
     return <p>Не найдено коллекций</p>;
   }
 
+  const { data: collections, limit, total } = data;
+
   return (
     <div className={clsx(styles.CollectionList, className)}>
       <ul className={clsx(styles.list)}>
-        {collections &&
+        {data &&
           collections.map((collection) => (
             <li key={collection.id}>
               <CollectionCard collection={collection} />
@@ -60,9 +46,9 @@ export const CollectionList: React.FC<CollectionList> = ({ className, filters })
       </ul>
       <Pagination
         currentPage={currentPage}
-        limit={data.limit}
+        limit={limit}
         onPageChange={onPageChange}
-        total={data.total}
+        total={total}
         className={styles.pagination}
       />
     </div>
