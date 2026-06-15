@@ -1,13 +1,10 @@
-import clsx from "clsx";
 import styles from "./Footer.module.css";
 import { SocialLinks } from "./SocialLinks/SocialLinks";
 import YeahubIcon from "@shared/assets/icons/Yeahub.svg?react";
-interface Footer {
-  className?: string;
-}
-export const Footer: React.FC<Footer> = ({ className }) => {
+
+export const Footer = () => {
   return (
-    <footer className={clsx(styles.Footer, className)}>
+    <footer className={styles.Footer}>
       <div className={styles.container}>
         <YeahubIcon className={styles.logo} />
         <p className={styles.phrase}>
@@ -25,7 +22,7 @@ export const Footer: React.FC<Footer> = ({ className }) => {
           <p className={styles["search-us"]}>
             Ищите нас и в других соцсетях @yeahub_it
           </p>
-          <SocialLinks className={styles.SocialLinks} />
+          <SocialLinks />
         </div>
       </div>
     </footer>

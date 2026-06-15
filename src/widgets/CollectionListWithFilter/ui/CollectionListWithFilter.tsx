@@ -1,66 +1,75 @@
-import clsx from "clsx";
 import styles from "./CollectionListWithFilter.module.css";
-import {
-  CollectionList,
-  type GetAllCollectionsParams,
-} from "@entities/collection";
-import { CollectionFilter } from "@features/filter";
-import FilterIcon from "@shared/assets/icons/filter.svg?react";
-import { useMemo } from "react";
-import { useCollectionListWithFilter } from "../model/useCollectionListWithFilter";
+import { collectionApi, CollectionList } from "@entities/collection";
+import { Pagination } from "@shared/ui/pagination/Pagination";
+import { CollectionListWithFilterHeader } from "./CollectionListWithFilterHeader/CollectionListWithFilterHeader";
+import { CollectionFilter } from "@widgets/CollectionFilter";
+import { useState } from "react";
+import clsx from "clsx";
+import { useFetch } from "@shared/hooks/useFetch";
+import { useCollectionFilter } from "@widgets/CollectionFilter/hooks/useCollectionFilter";
 
-interface CollectionListWithFilterProps {
-  className?: string;
-}
+export const CollectionListWithFilter = () => {
+  const [showFilter, setShowFilter] = useState(false);
+  const toggleFilter = () => setShowFilter((prev) => !prev);
 
-export const CollectionListWithFilter = ({
-  className,
-}: CollectionListWithFilterProps) => {
-  const {
-    debouncedInputValue,
-    handleFilterInputChange,
-    handleSelectedSpecializations,
-    isFilterOpen,
-    isFree,
-    setIsFree,
-    titleOrDescriptionSearch,
-    toggleFilter,
-    selectedSpecializations,
-  } = useCollectionListWithFilter();
+  const { getCollectionFiltersQuery, setCollectionFiltersQuery } =
+    useCollectionFilter();
 
-  const filters: GetAllCollectionsParams = useMemo(
-    () => ({
-      isFree,
-      specializations: selectedSpecializations,
-      titleOrDescriptionSearch: debouncedInputValue,
-    }),
-    [isFree, selectedSpecializations, debouncedInputValue],
+  const filters = getCollectionFiltersQuery()
+
+  const onPageChange = (page: number) => {
+    setCollectionFiltersQuery({ page });
+  };
+
+  const { getAllCollections } = collectionApi;
+  const { data, error, isLoading } = useFetch(
+    () => getAllCollections(filters),
+    [
+      filters.isFree,
+      filters.limit,
+      filters.page,
+      filters.specializations.join(','),
+      filters.titleOrDescriptionSearch,
+    ],
   );
 
+  if (isLoading) {
+    return <>loading...</>;
+  }
+
+  if (error) {
+    return (
+      <>
+        <p>Что-то пошло не так :(</p>
+        <p>Ошибка: {error}</p>
+      </>
+    );
+  }
+  if (!data) {
+    return <p>Не найдено коллекций</p>;
+  }
+
+  const { data: collections, total } = data;
+
   return (
-    <div className={clsx(styles.CollectionListWithFilter, className)}>
+    <div className={styles.CollectionListWithFilter}>
       <div className={styles.collectionWrapper}>
-        <div className={styles.collectionHeader}>
-          <h1 className={styles.title}>Коллекции</h1>
-          <div className={styles.filter}>
-            <FilterIcon
-              className={clsx(styles.filterIcon)}
-              onClick={toggleFilter}
-            />
-          </div>
-        </div>
-        <CollectionList filters={filters} />
+        <CollectionListWithFilterHeader toggleFilter={toggleFilter} />
+        <CollectionList collections={collections} />
+        <Pagination
+          currentPage={filters.page}
+          limit={filters.limit}
+          onPageChange={onPageChange}
+          total={total}
+          className={styles.pagination}
+        />
       </div>
       <CollectionFilter
-        className={styles.CollectionFilter}
-        isOpen={isFilterOpen}
-        close={toggleFilter}
-        filterInputValue={titleOrDescriptionSearch}
-        handleFilterInputChange={handleFilterInputChange}
-        selectedSpecializations={selectedSpecializations}
-        handleSelectedSpecializations={handleSelectedSpecializations}
-        isFreeSelected={isFree}
-        setIsFreeSelected={setIsFree}
+        onClose={() => setShowFilter(false)}
+        className={clsx(
+          styles.CollectionFilter,
+          showFilter ? styles.show : styles.hide,
+        )}
       />
     </div>
   );

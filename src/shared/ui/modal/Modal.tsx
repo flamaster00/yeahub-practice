@@ -9,7 +9,7 @@ interface Modal {
   onClose: () => void;
   children: React.ReactNode;
 }
-export const Modal: React.FC<Modal> = (props) => {
+export const Modal = (props: Modal) => {
   const { className, children, isOpen, onClose } = props;
   const contentRef = useRef<HTMLDivElement>(null);
 

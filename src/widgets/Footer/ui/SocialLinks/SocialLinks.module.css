@@ -3,11 +3,18 @@
   gap: 8px;
   width: fit-content;
   height: fit-content;
+  margin-left: auto;
 }
 
 .footer-icon {
   width: 20px;
   height: 20px;
+}
+
+@media (width >= 768px) {
+  .SocialLinks {
+    margin-left: 0;
+  }
 }
 
 @media (width >= 1440px) {

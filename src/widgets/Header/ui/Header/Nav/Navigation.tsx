@@ -1,11 +1,8 @@
-import clsx from "clsx";
 import styles from "./Navigation.module.css";
-interface Navigation {
-  className?: string;
-}
-export const Navigation: React.FC<Navigation> = ({ className }) => {
+
+export const Navigation = () => {
   return (
-    <nav className={clsx(styles.Navigation, className)}>
+    <nav className={styles.Navigation}>
       <ul className={styles["nav-list"]}>
         <li className={styles["nav-list-item"]}>
           <a href="/">База вопросов</a>
