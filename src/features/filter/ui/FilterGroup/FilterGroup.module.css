@@ -1,0 +1,34 @@
+.FilterGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: start;
+  
+    width: 288px;
+    height: fit-content;
+}
+
+.title {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 120%;
+    letter-spacing: 0%;
+    vertical-align: middle;
+  
+    color: var(--color-black-700);
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .listBtn {
+    border-color: var(--color-black-200);
+    color: var(--color-black-800);
+  }
+  
+  .selected {
+    border-color: var(--color-purple-700);
+  }

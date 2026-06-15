@@ -7,7 +7,7 @@ interface Logo {
   className?: string;
 }
 
-export const Logo: React.FC<Logo> = ({ className }) => {
+export const Logo = ({ className }: Logo) => {
   return (
     <div className={clsx(styles.Logo, className)}>
       <div className={clsx(styles["icon-container"], styles["icon-logo"])}>

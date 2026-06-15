@@ -14,32 +14,10 @@
   flex: 1;
 }
 
-.collectionHeader {
-  height: 48px;
-  width: 100%;
-  padding-right: 10px;
-  padding-bottom: 12px;
-  border-bottom: 0.5px solid var(--color-black-50);
-
-  display: flex;
-  justify-content: space-between;
-}
-
-.title {
-  font-weight: 500;
-  font-style: Medium;
-  font-size: 20px;
-  line-height: 120%;
-  letter-spacing: 0%;
-}
-
-.filter {
-}
-
-.filterIcon {
-  width: 36px;
-  height: 36px;
-  cursor: pointer;
+.pagination {
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .CollectionFilter {
@@ -50,20 +28,19 @@
   background-color: #fff;
 }
 
+.CollectionFilter.show {
+  display: flex;
+}
+
+.CollectionFilter.hide {
+  display: none;
+}
+
 @media (width >= 768px) {
   .collectionWrapper {
     max-width: 708px;
     padding: 20px 16px 40px;
     border-radius: 24px;
-  }
-
-  .collectionHeader {
-    height: 56px;
-    padding-bottom: 20px;
-  }
-
-  .title {
-    font-size: 24px;
   }
 
   .CollectionFilter {
@@ -80,18 +57,13 @@
     padding: 20px 20px 40px;
   }
 
-  .collectionHeader {
-    height: 45px;
-    padding-bottom: 16px;
-  }
-
-  .filterIcon {
-    display: none;
-  }
-
   .CollectionFilter {
-    display: block;
+    display: flex;
     position: static;
     background-color: transparent;
+  }
+
+  .CollectionFilter.hide {
+    display: flex;
   }
 }

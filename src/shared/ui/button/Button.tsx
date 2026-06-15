@@ -17,7 +17,7 @@ interface Button extends ButtonHTMLAttributes<HTMLButtonElement> {
   iconSize?: IconSize;
 }
 
-export const Button: FC<Button> = (props) => {
+export const Button= (props: Button) => {
   const {
     className,
     children,
