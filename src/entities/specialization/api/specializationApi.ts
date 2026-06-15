@@ -1,4 +1,5 @@
 import { apiClient } from "@shared/api/apiClient";
+
 import type { GetAllSpecializationsResponse } from "../model/model";
 
 export const specializationApi = {

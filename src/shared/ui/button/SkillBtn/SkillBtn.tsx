@@ -1,6 +1,7 @@
 import clsx from "clsx";
-import styles from "./SkillBtn.module.css";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
+
+import styles from "./SkillBtn.module.css";
 
 interface SkillBtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;

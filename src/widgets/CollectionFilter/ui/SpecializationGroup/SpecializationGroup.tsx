@@ -1,14 +1,11 @@
-import clsx from "clsx";
-import styles from "./SpecializationGroup.module.css";
-import { FilterGroup } from "@features/filter";
-import {
-  specializationApi,
-  type Specialization,
-} from "@entities/specialization";
-import { useFetch } from "@shared/hooks/useFetch";
-import { Button } from "@shared/ui/button/Button";
-import { SkillBtn } from "@shared/ui/button/SkillBtn/SkillBtn";
 import { useState } from "react";
+
+import { FilterGroup } from "@features/filter";
+import { specializationApi } from "@entities/specialization";
+import { useFetch } from "@shared/hooks/useFetch";
+import { SkillBtn } from "@shared/ui/button/SkillBtn/SkillBtn";
+
+import styles from "./SpecializationGroup.module.css";
 
 interface SpecializationGroupProps {
   selectedItems: number[];
@@ -51,7 +48,9 @@ export const SpecializationGroup = ({
       showAll={showAll}
       toggleShowAll={toggleShowAll}
     >
-      <ul className={styles.list}>{showAll ? specializationList : specializationList.slice(0,3)}</ul>
+      <ul className={styles.list}>
+        {showAll ? specializationList : specializationList.slice(0, 3)}
+      </ul>
     </FilterGroup>
   );
 };

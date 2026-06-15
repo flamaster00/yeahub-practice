@@ -1,6 +1,8 @@
 import clsx from "clsx";
-import styles from "./Pagination.module.css";
+
 import { ArrowBtn } from "../button/ArrowBtn/ArrowBtn";
+
+import styles from "./Pagination.module.css";
 
 interface PaginationProps {
   className?: string;

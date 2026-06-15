@@ -1,7 +1,9 @@
 import clsx from "clsx";
-import styles from "./FilterWrapper.module.css";
 import type { ReactNode } from "react";
+
 import CloseButtonIcon from "@shared/assets/icons/close_button.svg?react";
+
+import styles from "./FilterWrapper.module.css";
 
 interface FilterWrapperProps {
   className?: string;

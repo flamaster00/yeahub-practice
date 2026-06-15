@@ -1,6 +1,8 @@
 import clsx from "clsx";
-import styles from "./CollectionListWithFilterHeader.module.css";
+
 import FilterIcon from "@shared/assets/icons/filter.svg?react";
+
+import styles from "./CollectionListWithFilterHeader.module.css";
 
 interface CollectionListWithFilterHeaderProps {
   toggleFilter: () => void;

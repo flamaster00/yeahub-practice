@@ -1,6 +1,8 @@
-import { Button } from "@shared/ui/button/Button";
-import styles from "./AuthActions.module.css";
 import clsx from "clsx";
+
+import { Button } from "@shared/ui/button/Button";
+
+import styles from "./AuthActions.module.css";
 
 interface AuthActions {
   className?: string;

@@ -1,9 +1,10 @@
-import styles from "./SocialLinks.module.css";
 import FigmaIcon from "@shared/assets/icons/figma.svg?react";
 import TelegramIcon from "@shared/assets/icons/telegram_white.svg?react";
 import YoutubeIcon from "@shared/assets/icons/youtube.svg?react";
 import TictocIcon from "@shared/assets/icons/tictoc.svg?react";
 import GithubIcon from "@shared/assets/icons/github_white.svg?react";
+
+import styles from "./SocialLinks.module.css";
 
 
 export const SocialLinks = () => {
