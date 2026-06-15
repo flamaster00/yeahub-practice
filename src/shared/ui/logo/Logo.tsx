@@ -1,7 +1,9 @@
 import clsx from "clsx";
-import styles from "./Logo.module.css";
+
 import LogoIcon from "@shared/assets/icons/Logo.svg?react";
 import YeahubIcon from "@shared/assets/icons/Yeahub.svg?react";
+
+import styles from "./Logo.module.css";
 
 interface Logo {
   className?: string;

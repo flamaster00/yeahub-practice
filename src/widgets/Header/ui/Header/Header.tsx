@@ -1,8 +1,8 @@
-import styles from "./Header.module.css";
-
-import { AuthActions } from "@features/auth/ui/AuthActions/AuthActions";
-import { Navigation } from "./Nav/Navigation";
 import { Logo } from "@shared/ui/logo/Logo";
+import { AuthActions } from "@features/auth";
+
+import styles from "./Header.module.css";
+import { Navigation } from "./Nav/Navigation";
 
 export const Header = () => {
   return (

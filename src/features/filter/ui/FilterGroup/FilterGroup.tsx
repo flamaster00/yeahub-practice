@@ -1,7 +1,9 @@
-import { Button } from "@shared/ui/button/Button";
-import styles from "./FilterGroup.module.css";
 import { type ReactNode } from "react";
 import clsx from "clsx";
+
+import { Button } from "@shared/ui/button/Button";
+
+import styles from "./FilterGroup.module.css";
 
 interface FilterGroupProps {
   className?: string;

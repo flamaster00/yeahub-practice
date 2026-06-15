@@ -1,12 +1,13 @@
-import styles from "./CollectionListWithFilter.module.css";
-import { collectionApi, CollectionList } from "@entities/collection";
-import { Pagination } from "@shared/ui/pagination/Pagination";
-import { CollectionListWithFilterHeader } from "./CollectionListWithFilterHeader/CollectionListWithFilterHeader";
-import { CollectionFilter } from "@widgets/CollectionFilter";
 import { useState } from "react";
 import clsx from "clsx";
+
+import { collectionApi, CollectionList } from "@entities/collection";
+import { Pagination } from "@shared/ui/pagination/Pagination";
+import { CollectionFilter, useCollectionFilter } from "@widgets/CollectionFilter";
 import { useFetch } from "@shared/hooks/useFetch";
-import { useCollectionFilter } from "@widgets/CollectionFilter/hooks/useCollectionFilter";
+
+import { CollectionListWithFilterHeader } from "./CollectionListWithFilterHeader/CollectionListWithFilterHeader";
+import styles from "./CollectionListWithFilter.module.css";
 
 export const CollectionListWithFilter = () => {
   const [showFilter, setShowFilter] = useState(false);

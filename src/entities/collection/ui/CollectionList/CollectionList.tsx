@@ -1,8 +1,13 @@
 import clsx from "clsx";
-import styles from "./CollectionList.module.css";
-import { CollectionCard } from "../CollectionCard/CollectionCard";
-import type { Collection } from "@entities/collection/model/model";
 import { Link } from "react-router-dom";
+
+
+import type { Collection } from "@entities/collection";
+
+import { CollectionCard } from "../CollectionCard/CollectionCard";
+
+import styles from "./CollectionList.module.css";
+
 
 interface CollectionList {
   collections: Collection[];

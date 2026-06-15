@@ -1,12 +1,18 @@
-import styles from "./CollectionFilter.module.css";
-import { SearchInput } from "@shared/ui/search-input/SearchInput";
 import { useEffect, useState } from "react";
+import clsx from "clsx";
+
+import { SearchInput } from "@shared/ui/search-input/SearchInput";
 import { FilterWrapper } from "@features/filter";
+import { useDebounce } from "@shared/hooks/useDebounce";
+
+import { useCollectionFilter } from "../hooks/useCollectionFilter";
+
+import styles from "./CollectionFilter.module.css";
 import { AccessGroup } from "./AccessGroup/AccessGroup";
 import { SpecializationGroup } from "./SpecializationGroup/SpecializationGroup";
-import { useCollectionFilter } from "../hooks/useCollectionFilter";
-import clsx from "clsx";
-import { useDebounce } from "@shared/hooks/useDebounce";
+
+
+
 
 interface CollectionFilterProps {
   className?: string;
@@ -23,9 +29,11 @@ export const CollectionFilter = ({ className, onClose }: CollectionFilterProps) 
 
   const [selectedSpecs, setSelectedSpecs] = useState<number[]>(() => []);
   const handleSelect = (id: number) => {
-    selectedSpecs.includes(id)
-      ? setSelectedSpecs(selectedSpecs.filter((el) => el !== id))
-      : setSelectedSpecs([id, ...selectedSpecs]);
+    if (selectedSpecs.includes(id)) {
+      setSelectedSpecs(prev => prev.filter((el) => el !== id));
+    } else {
+      setSelectedSpecs(prev => [id, ...prev]);
+    }
   };
 
   const [isFree, setIsFree] = useState(true);

@@ -1,7 +1,9 @@
 import clsx from "clsx";
-import styles from "./SearchInput.module.css";
-import SearchIcon from "@shared/assets/icons/search.svg?react";
 import type { InputHTMLAttributes } from "react";
+
+import SearchIcon from "@shared/assets/icons/search.svg?react";
+
+import styles from "./SearchInput.module.css";
 
 interface SearchInputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;

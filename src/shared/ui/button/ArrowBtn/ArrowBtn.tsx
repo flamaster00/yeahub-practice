@@ -1,7 +1,9 @@
 import clsx from "clsx";
-import styles from "./ArrowBtn.module.css";
-import ArrowIcon from '@shared/assets/icons/arrow.svg?react'
 import type { ButtonHTMLAttributes } from "react";
+
+import ArrowIcon from '@shared/assets/icons/arrow.svg?react'
+
+import styles from "./ArrowBtn.module.css";
 
 interface ArrowBtn extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;

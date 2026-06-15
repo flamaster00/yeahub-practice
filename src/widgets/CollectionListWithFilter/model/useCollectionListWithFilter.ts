@@ -1,6 +1,7 @@
+import { useState } from "react";
+
 import type { GetAllCollectionsParams } from "@entities/collection";
 import { useDebounce } from "@shared/hooks/useDebounce";
-import { useState } from "react";
 
 export const useCollectionListWithFilter = () => {
   type FilterSpec = NonNullable<GetAllCollectionsParams["specializations"]>;

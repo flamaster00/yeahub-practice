@@ -1,10 +1,11 @@
-import styles from "./CollectionCard.module.css";
 import StarIcon from "@shared/assets/icons/star.svg?react";
 import QuestionIcon from "@shared/assets/icons/question_square.svg?react";
 import { Button } from "@shared/ui/button/Button";
 import ErrorImg from "@shared/assets/images/error.png";
 import SberImg from "@shared/assets/images/sber.jpg";
-import type { Collection } from "@entities/collection/model/model";
+import type { Collection } from "@entities/collection";
+
+import styles from "./CollectionCard.module.css";
 
 interface CollectionCard {
   collection: Collection

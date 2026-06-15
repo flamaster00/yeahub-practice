@@ -23,7 +23,7 @@ export const useFetch = <T>(
     };
 
     fetchData();
-  }, [...deps, options.skip]);
+  }, [options.skip, ...deps]);
 
   return { data, isLoading, error };
 };

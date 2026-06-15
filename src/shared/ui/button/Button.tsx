@@ -1,6 +1,7 @@
 import clsx from "clsx";
-import styles from "./Button.module.css";
 import type { ButtonHTMLAttributes, FC, ReactNode, SVGProps } from "react";
+
+import styles from "./Button.module.css";
 
 type ButtonVariant = "primary" | "outline" | "link";
 type ButtonSize = "M" | "L" | "S";

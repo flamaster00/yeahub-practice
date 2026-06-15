@@ -1,6 +1,7 @@
-import styles from "./AccessGroup.module.css";
 import { FilterGroup } from "@features/filter";
 import { SkillBtn } from "@shared/ui/button/SkillBtn/SkillBtn";
+
+import styles from "./AccessGroup.module.css";
 
 interface AccessGroupProps {
   isFreeAccess: boolean;
