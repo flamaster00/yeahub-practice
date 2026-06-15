@@ -6,7 +6,7 @@ interface AuthActions {
   className?: string;
 }
 
-export const AuthActions: React.FC<AuthActions> = ({ className }) => {
+export const AuthActions = ({ className }: AuthActions) => {
   return (
     <div className={clsx(styles.AuthActions, className)}>
       <Button variant="link">Вход</Button>

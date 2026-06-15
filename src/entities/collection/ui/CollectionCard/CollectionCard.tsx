@@ -1,22 +1,22 @@
-import clsx from "clsx";
 import styles from "./CollectionCard.module.css";
 import StarIcon from "@shared/assets/icons/star.svg?react";
 import QuestionIcon from "@shared/assets/icons/question_square.svg?react";
 import { Button } from "@shared/ui/button/Button";
-import type { Collection } from "@entities/collection/model/model";
 import ErrorImg from "@shared/assets/images/error.png";
-import SberImg from '@shared/assets/images/sber.jpg'
+import SberImg from "@shared/assets/images/sber.jpg";
+import type { Collection } from "@entities/collection/model/model";
 
 interface CollectionCard {
-  className?: string;
-  collection: Collection;
+  collection: Collection
 }
 
-export const CollectionCard = ({ className, collection }: CollectionCard) => {
+export const CollectionCard = ({ collection }: CollectionCard) => {
+  
   const { imageSrc, title, keywords, questionsCount, specializations, isFree } =
     collection;
+
   return (
-    <div className={clsx(styles.CollectionCard, className)}>
+    <div className={styles.CollectionCard}>
       <div className={styles["img-wrapper"]}>
         <img
           src={imageSrc ? imageSrc : SberImg}

@@ -1,0 +1,18 @@
+.FilterWrapper {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    height: fit-content;
+    border-radius: 24px;
+}
+
+.icon {
+    margin-left: auto;
+}
+
+@media (width >= 1440px) {
+    .icon {
+        display: none;
+    }
+}
